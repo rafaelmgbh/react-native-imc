@@ -1,0 +1,10 @@
+{
+  "expo": {
+    "name": "onebit-react",
+    "slug": "onebit-react",
+    "version": "1.0.0",
+    "assetBundlePatterns": [
+      "**/*"
+    ]
+  }
+}
