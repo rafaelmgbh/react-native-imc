@@ -15,14 +15,28 @@ export default function Form(){
         return setImc((weight / (height * height)).toFixed(2));
     }
 
+    function validateImc(){
+        if (height != null && weight != null){
+            calculateImc();
+            setHeight(null);
+            setWeight(null);
+            setMessageImc("Seu IMC é:");
+            setTextButton("Calcular Novamente");
+        }else{
+            setImc(null);
+            setMessageImc("Preencha o peso e altura");
+            setTextButton("Calcular IMC");
+        }
+    }
+
     return(
         <View>
            <View>
             <Text>Altura</Text>
-            <TextInput placeholder="Ex. 1.75" keyboardType="numeric"/>
+            <TextInput onChangeText={setHeight} value={height} placeholder="Ex. 1.75" keyboardType="numeric"/>
             <Text>Peso</Text>
-            <TextInput placeholder="Ex. 75.600" keyboardType="numeric"/>
-            <Button title="Calcular IMC"/>
+            <TextInput onChangeText={setWeight} value={weight} placeholder="Ex. 75.600" keyboardType="numeric"/>
+            <Button onPress={() =>validateImc()} title={TextButton}/>
            </View>
            <ResultImc messageResultImc={messageImc} resultImc={imc} />
            
