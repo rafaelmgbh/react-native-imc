@@ -5,7 +5,7 @@ import styles from "./style";
 export default function Title(){
     return(
         <View style={styles.boxTitle}>
-            <Text style={styles.textTitle}>Teste de App 1.0</Text>
+            <Text style={styles.textTitle}>Calculo de IMC</Text>
         </View>
     )
 }
