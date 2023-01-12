@@ -1,5 +1,5 @@
 import React , {useState} from "react";
-import { View,Text, TextInput, TouchableOpacity, Vibration } from "react-native";
+import { View,Text, TextInput, TouchableOpacity, Vibration, Pressable, Keyboard } from "react-native";
 import ResultImc from "./ResultImc";
 import styles from "./style";
 
@@ -14,6 +14,8 @@ export default function Form(){
     const [errorMessage, setErrorMessage] = useState(null);
 
     function calculateImc(){
+        // Calcula o IMC , substitui a virgula por ponto e arredonda o resultado para 2 casas decimais
+        let heightFormat = height.replace(",", ".");
         return setImc((weight / (height * height)).toFixed(2));
     }
 
@@ -41,7 +43,8 @@ export default function Form(){
     }
 
     return(
-        <View style={styles.formContext}>
+        //Pressable e um componente que permite que o usuario clique em qualquer lugar da tela e o teclado seja fechado , adicionando o onPress={Keyboard.dismiss} no componente
+        <Pressable onPress={Keyboard.dismiss} style={styles.formContext}>            
            <View style={styles.form}>
             <Text style={styles.formLabel}>Altura</Text>
             <Text style={styles.errorMessage}>{errorMessage}</Text>
@@ -53,9 +56,7 @@ export default function Form(){
             <Text style={styles.textButtonCalculator}>{TextButton}</Text>           
             </TouchableOpacity>           
            </View>
-           <ResultImc messageResultImc={messageImc} resultImc={imc} />
-           
-
-        </View>
+           <ResultImc messageResultImc={messageImc} resultImc={imc} />       
+        </Pressable>
     )
 }
